@@ -7,6 +7,7 @@ WORKDIR /var/www/html
 
 # Install packages and remove default server definition
 RUN apk add --no-cache \
+  awake \
   curl \
   nginx \
   php83 \
