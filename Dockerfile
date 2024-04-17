@@ -29,7 +29,8 @@ RUN apk add --no-cache \
   php83-xmlwriter \
   supervisor \
   php83-pdo_mysql \
-  php83-pdo
+  php83-pdo \
+  php83-pecl-xdebug
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -51,10 +52,11 @@ RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 RUN ln -s /usr/bin/php83 /usr/bin/php
 
 # Switch to use a non-root user from here on
-USER nobody
+#USER nobody
 
 # Add application
-COPY --chown=nobody src/ /var/www/html/
+#COPY --chown=nobody src/ /var/www/html/
+COPY src/ /var/www/html/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
